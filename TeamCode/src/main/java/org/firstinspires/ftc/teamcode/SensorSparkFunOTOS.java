@@ -9,6 +9,7 @@ import com.qualcomm.hardware.sparkfun.SparkFunOTOS;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.HardwareDevice;
 
 /*
  * This OpMode illustrates how to use the SparkFun Qwiic Optical Tracking Odometry Sensor (OTOS)
@@ -77,10 +78,11 @@ public class SensorSparkFunOTOS extends LinearOpMode {
         // set, the default is inches and degrees. Note that this setting is not
         // stored in the sensor, it's part of the library, so you need to set at the
         // start of all your programs.
+        //default is inches/degrees
         // myOtos.setLinearUnit(SparkFunOTOS.LinearUnit.METERS);
-        myOtos.setLinearUnit(SparkFunOTOS.LinearUnit.INCHES);
+        // myOtos.setLinearUnit(SparkFunOTOS.LinearUnit.INCHES);
         // myOtos.setAngularUnit(SparkFunOTOS.AngularUnit.RADIANS);
-        myOtos.setAngularUnit(SparkFunOTOS.AngularUnit.DEGREES);
+        // myOtos.setAngularUnit(SparkFunOTOS.AngularUnit.DEGREES);
 
         // Assuming you've mounted your sensor to a robot and it's not centered,
         // you can specify the offset for the sensor relative to the center of the
@@ -125,7 +127,7 @@ public class SensorSparkFunOTOS extends LinearOpMode {
         // to wait until the calibration is complete. If no parameters are provided,
         // it will take 255 samples and wait until done; each sample takes about
         // 2.4ms, so about 612ms total
-        myOtos.calibrateImu();
+        myOtos.calibrateImu(255, true);
 
         // Reset the tracking algorithm - this resets the position to the origin,
         // but can also be used to recover from some rare tracking errors
